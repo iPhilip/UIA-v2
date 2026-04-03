@@ -1849,9 +1849,9 @@ class TypeValidation {
 ; The base class for IUIAutomation objects that return releasable pointers
 class IUIAutomationBase {
     __New(ptr) {
+        this.DefineProp("ptr", {Value:ptr})
         if !ptr
             throw ValueError('Invalid IUnknown interface pointer', -2, this.__Class)
-        this.DefineProp("ptr", {Value:ptr})
     }
     __Delete() => this.Release()
     __Item => (ObjAddRef(this.ptr), ComValue(0xd, this.ptr))
